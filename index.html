@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.css"
+    />
+    <script
+      type="application/javascript"
+      src="https://patriciogonzalezvivo.github.io/glslEditor/build/glslEditor.js"
+    ></script>
+  </head>
+  <body>
+    <div id="glsl_editor"></div>
+    <script type="text/javascript">
+      const FRAG_HEADER = `
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
+
+vec3 fragment(vec2 uv) {
+    vec3 color = vec3(0.);
+`;
+
+      const FRAG_PLACEHOLDER = "color = vec3(uv, 0.0);";
+
+      const FRAG_FOOTER = `
+
+    return color;
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
+
+    vec3 color = vec3(0.);
+    color = fragment(st);
+
+    gl_FragColor = vec4(color,1.0);
+}
+`;
+
+      const glslEditor = new GlslEditor("#glsl_editor", {
+        canvas_size: 500,
+        canvas_draggable: true,
+        theme: "monokai",
+        frag_header: FRAG_HEADER,
+        frag_footer: FRAG_FOOTER,
+        frag: FRAG_PLACEHOLDER,
+      });
+    </script>
+  </body>
+</html>
