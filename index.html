@@ -17,30 +17,36 @@
       const FRAG_PLACEHOLDER = `
 // https://gist.github.com/dzil123/ade1e4095fcd592488b722afb41c4a6c
 
+// Sample project:
+
+// // uniform variables are the same across all pixels for a given frame
+// uniform vec2 u_resolution;  // int pixel coordinates
+// uniform vec2 u_mouse;       // int pixel coordinates
+// uniform float u_time;       // seconds
+//
+// // implicit variables:
+// // in  vec4 gl_FragCoord  pixel coordinates
+// // out vec4 gl_FragColor  the color 'returned' from main()
+//
+//
+// // called once per pixel
+// void main() {
+//     vec2 st = gl_FragCoord.xy / u_resolution.xy;  // normalized coordinates, 0.0 - 1.0
+//
+//     vec3 color = vec3(0.0);
+//
+//     // color = vec3(0.0, 0.7, 1.0);
+//     // color = vec3(st, 0.0);
+//
+//     gl_FragColor = vec4(color, 1.0);
+// }
+
 #ifdef GL_ES
 precision mediump float;
 #endif
 
-// uniform variables are the same across all pixels for a given frame
-uniform vec2 u_resolution;  // int pixel coordinates
-uniform vec2 u_mouse;       // int pixel coordinates
-uniform float u_time;       // seconds
-
-// implicit variables:
-// in  vec4 gl_FragCoord  pixel coordinates
-// out vec4 gl_FragColor  the color 'returned' from main()
-
-
-// called once per pixel
 void main() {
-    vec2 st = gl_FragCoord.xy / u_resolution.xy;  // normalized coordinates, 0.0 - 1.0
-
-    vec3 color = vec3(0.0);
-
-    // color = vec3(0.0, 0.7, 1.0);
-    // color = vec3(st, 0.0);
-
-    gl_FragColor = vec4(color, 1.0);
+    
 }
 `;
 
